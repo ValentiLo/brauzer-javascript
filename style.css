@@ -68,4 +68,4 @@ ul.products{display: flex;justify-content: space-around ;}
   
     background-color: #ee3643;
   }
-  
+   td, th{border: red 1px solid; padding: 0px;}
