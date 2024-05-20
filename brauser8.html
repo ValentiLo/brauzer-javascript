@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Конспект «JS в браузере». Раздел 1</h1>
+    <pre>
+        <h2>Поиск элементов на странице:</h2>
+        
+        <table>
+            <tr>
+                <td>
+                    Поиск элемента по тегу
+                </td>
+                <td>
+                    var list = document.querySelector('ul');
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Поиск последнего элемента из списка
+                </td>
+                <td>
+                    var lastProduct = document.querySelector('li:last-child');
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Поиск элемента по классу
+                </td>
+                <td>
+                    var price = document.querySelector('.price');
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Поиск третьего элемента из списка товаров
+                </td>
+                <td>
+                    var thirdProduct = document.querySelector('.product:nth-child(3)');
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Поиск всех элементов, подходящих по селектору
+                </td>
+                <td>
+                    var listItems = document.querySelectorAll('.product');
+                </td>
+            </tr>
+        </table>
+        
+        <h4><ul>
+            <li>querySelectorAll возвращает список (коллекцию) элементов.</li>
+            <li>Этот список похож на массив, но им не является.</li>
+            <li>Он называется псевдомассив</li>
+            <li>Его можно перебирать с помощью цикла for.</li>
+        </ul>
+               
+        
+        </h4>
+        <h2>Добавление класса элементу страницы:</h2>
+        <table>
+            <tr>
+                <td>
+                    // Когда ищем элемент по классу, используем точку
+                </td>
+                <td>
+                    var product = document.querySelector('.product');
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    // Но когда добавляем класс, точки нет!
+                </td>
+                <td>
+                    product.classList.add('product--sale');
+                </td>
+            </tr>
+        </table>
+        
+        
+        
+        
+        
+        <p>Результат работы classList.add() такой же, как при ручном добавлении класса в разметку:</p>
+        <p style="border: 2px solid red">
+       &lt;!-- Исходное состояние разметки --> 
+        &lt;li class="product">
+          …
+        &lt;/li>
+        
+        <!-- Состояние после вызова classList.add -->
+        &lt;li class="product product--sale">
+          …
+        &lt;/li></pre></p>
+</body>
+</html>
