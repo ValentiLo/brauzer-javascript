@@ -1,3 +1,4 @@
+ul.products{display: flex;justify-content: space-around ;}
 .product {
     position: relative;
   
