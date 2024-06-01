@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Свойство textContent, текстовое содержимое</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+  <style>body{width: 100%;background: papayawhip}</style>
+</head>
+<body>
+    <div class="st">
+  <h1>Свойство textContent, текстовое содержимое</h1>
+  <p>Карточка уже в разметке, но пока она пустая. Начнём наполнять её контентом. В первую очередь добавим название товара и его цену.</p>
+  <p>Алгоритм почти такой же, как и при добавлении самой карточки: создание элемента, добавление класса, вставка текстового содержимого (название товара, его цена), добавление элемента в конец карточки. Все шаги нам знакомы, кроме добавления текста. Как это сделать?</p>
+  <p>У каждого DOM-элемента есть свойство textContent. Оно содержит текстовое содержимое элемента. В textContent не попадает разметка, только текст.</p>
+  <pre>// HTML
+    &lt;p>Я — &lt;em>текстовый элемент&lt;/em>.&lt;/p>
+    
+    // JS
+    var p = document.querySelector('p');
+    console.log(p.textContent);
+    // Выведет: Я — текстовый элемент.
+    </pre>
+  <p>Это свойство объекта, которое можно не только прочитать, но и записать или перезаписать. Поэтому, если мы хотим задать элементу текстовое содержимое, достаточно записать в свойство необходимое значение.</p>
+  <pre>p.textContent = 'Теперь у меня новое содержимое.';
+    console.log(p.textContent);
+    // Выведет: Теперь у меня новое содержимое.
+    
+    // В HTML содержание тега изменится
+    &lt;p>Теперь у меня новое содержимое.&lt;/p></pre>
+  <p>Добавим в карточку название товара и его цену. Убедимся, что все новые элементы отображаются на странице.</p>
+  <p></p>
+  <p></p>
+  <h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>В конце программы создайте заголовок карточки товара h2 и запишите его в переменную title.</li>
+    </p>
+    <p>
+      <li>Добавьте заголовку класс product__title.</li>
+    </p>
+    <p>
+        <li>Задайте текст заголовка 'Профессиональная селфи-палка' с помощью textContent.</li>
+      </p>
+      <p>
+        <li>Добавьте DOM-элемент title в конец DOM-элемента listItem.</li>
+      </p>
+      <p>
+        <li>Аналогичным образом после заголовка создайте и запишите в переменную price DOM-элемент p с классом product__price и текстом '1000'. Затем вставьте price в конец listItem.</li>
+      </p>
+      
+  </ol>
+  <h2>Было</h2>
+  <pre>
+var cardList = document.querySelector('.products');
+console.log(cardList.children);
+
+var listItem = document.createElement('li');
+listItem.classList.add('product');
+cardList.appendChild(listItem);
+console.log(cardList.children);
+  </pre>
+  <h2>
+    Стало
+  </h2>
+  <pre>
+var cardList = document.querySelector('.products');
+console.log(cardList.children);
+
+var listItem = document.createElement('li');
+listItem.classList.add('product');
+cardList.appendChild(listItem);
+console.log(cardList.children);
+
+var title = document.createElement('h2');
+title.classList.add('product__title');
+title.textContent = 'Профессиональная селфи-палка';
+listItem.appendChild(title);
+
+var price = document.createElement('p');
+price.classList.add('product__price');
+price.textContent = '1000';
+listItem.appendChild(price);
+
+  </pre>
+  <h2>Решение</h2>
+  <p><code></code></p>
+  <p><code></code></p>
+  
+  <p><code></code></p>
+  <h2>Исполнение</h2>
+  <ul class="products">
+    <li class="product product--available">
+      <h2 class="product__title">Селфи-палка для начинающих</h2>
+      <img class="product__image" src="item-1.jpg" alt="Селфи-палка для начинающих">
+      <p class="product__price">200</p>
+    </li>
+
+    <li class="product product--unavailable">
+      <h2 class="product__title">Профессиональная селфи-палка</h2>
+      <img class="product__image" src="item-2.jpg" alt="Профессиональная селфи-палка">
+      <p class="product__price">1500</p>
+    </li>
+
+    <li class="product product--available">
+      <h2 class="product__title">Непотопляемая селфи-палка</h2>
+      <img class="product__image" src="item-3.jpg" alt="Непотопляемая селфи-палка">
+      <p class="product__price">2500</p>
+    </li>
+  </ul>
+  
+
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script>
+var cardList = document.querySelector('.products');
+console.log(cardList.children);
+
+var listItem = document.createElement('li');
+listItem.classList.add('product');
+cardList.appendChild(listItem);
+console.log(cardList.children);
+
+var title = document.createElement('h2');
+title.classList.add('product__title');
+title.textContent = 'Профессиональная селфи-палка';
+listItem.appendChild(title);
+
+var price = document.createElement('p');
+price.classList.add('product__price');
+price.textContent = '1000';
+listItem.appendChild(price);
+
+    </script>
+    </div>
+</body>
+</html>
