@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Каталог | Девайс</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+    <div class="st">
+  <h1>Функция для создания элементов</h1>
+  <p>Обратите внимание, по мере выполнения задачи, мы всё чаще повторяем одни и те же операции: создаём элементы с помощью document.createElement(), добавляем им классы через элемент.classList.add(), а в некоторых случаях и текстовое содержимое с помощью элемент.textContent. Пора вынести повторяющийся код в функцию, чтобы не писать каждый раз много похожих строчек кода.</p>
+  <p>Объявим функцию, которая будет принимать на вход три строки: имя тега (tagName), имя класса (className) и текстовое содержимое (text) элемента. Внутри неё будем создавать элемент с классом и текстом, а затем возвращать его наружу.</p>
+  <p>Не у всех элементов есть текстовое содержимое, поэтому дадим возможность вызывать функцию не с тремя, а с двумя параметрами. JavaScript сам по себе это позволяет. Но нам нужно предусмотреть проверку на присутствие третьего параметра. Будем добавлять в элемент текст с помощью textContent только если параметр text существует.</p>
+  <p>Как проверить наличие параметра? Если параметр не был передан в функцию, его значение внутри функции будет равно undefined, то есть не определено. Значение undefined приводится к логическому значению false, поэтому достаточно такой простейшей проверки:</p>
+  <pre>
+    var createCard = function (required, optional) {
+        if (optional) {
+          // действия с optional
+        }
+      }
+      
+      // Функция отработает, но действия с optional выполняться не будут
+      createCard('Обязательный аргумент');
+      
+      // Функция отработает и действия с optional выполнятся
+      createCard('Обязательный аргумент', 'Необязательный аргумент');
+  </pre>
+  <p>
+    А что будет если аргумент передан? Во-первых, он не будет равен undefined. Во-вторых, внутри оператора «круглые скобки» программа получит значение этого параметра и приведёт его к логическому типу. Как вы знаете из части «Условия», строки могут сами выступать в роли условий. Пустая строка приводится в false, а непустая к true. То есть, элементу добавится текстовое содержимое только тогда, когда мы передадим последним аргументом непустую строку. То, что надо.
+  </p>
+  
+  <h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>В начале кода объявите функцию makeElement с параметрами tagName, className, text.</li>
+    </p>
+    <p>
+      <li>В теле функции создайте DOM-элемент с именем тега tagName и запишите его в переменную element.</li>
+    </p>
+    <p>
+        <li>Добавьте элементу класс className.</li>
+      </p>
+      <p>
+        <li>Добавьте проверку на наличие параметра text. Если проверка выполняется, добавляйте element текстовое содержимое text.</li>
+      </p>
+      <p>
+        <li>Верните из функции element.</li>
+      </p>
+      
+  </ol>
+  <h2>Решение</h2>
+  <h2>Было</h2>
+  <pre>var cardList = document.querySelector('.products');
+    console.log(cardList.children);
+    
+    var listItem = document.createElement('li');
+    listItem.classList.add('product');
+    cardList.appendChild(listItem);
+    console.log(cardList.children);
+    
+    var title = document.createElement('h2');
+    title.classList.add('product__title');
+    title.textContent = 'Профессиональная селфи-палка';
+    listItem.appendChild(title);
+    
+    var price = document.createElement('p');
+    price.classList.add('product__price');
+    price.textContent = '1000';
+    listItem.appendChild(price);</pre>
+  <h2>Стало</h2>
+  <pre>var makeElement = function (tagName, className, text) {
+    var element = document.createElement(tagName);
+    element.classList.add(className);
+    if (text) {
+      element.textContent = text;
+    }
+    return element;  
+  };
+  
+  var cardList = document.querySelector('.products');
+  console.log(cardList.children);
+  
+  var listItem = document.createElement('li');
+  listItem.classList.add('product');
+  cardList.appendChild(listItem);
+  console.log(cardList.children);
+  
+  var title = document.createElement('h2');
+  title.classList.add('product__title');
+  title.textContent = 'Профессиональная селфи-палка';
+  listItem.appendChild(title);
+  
+  var price = document.createElement('p');
+  price.classList.add('product__price');
+  price.textContent = '1000';
+  listItem.appendChild(price);</pre>
+  <p><code></code></p>
+  <p><code></code></p>
+  
+  <p><code></code></p>
+  <h2>Исполнение</h2>
+  <ul class="products">
+    <li class="product product--available">
+      <h2 class="product__title">Селфи-палка для начинающих</h2>
+      <img class="product__image" src="item-1.jpg" alt="Селфи-палка для начинающих">
+      <p class="product__price">200</p>
+    </li>
+
+    <li class="product product--unavailable">
+      <h2 class="product__title">Профессиональная селфи-палка</h2>
+      <img class="product__image" src="item-2.jpg" alt="Профессиональная селфи-палка">
+      <p class="product__price">1500</p>
+    </li>
+
+    <li class="product product--available">
+      <h2 class="product__title">Непотопляемая селфи-палка</h2>
+      <img class="product__image" src="item-3.jpg" alt="Непотопляемая селфи-палка">
+      <p class="product__price">2500</p>
+    </li>
+  </ul>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script>
+ var makeElement = function (tagName, className, text) {
+  var element = document.createElement(tagName);
+  element.classList.add(className);
+  if (text) {
+    element.textContent = text;
+  }
+  return element;  
+};
+
+var cardList = document.querySelector('.products');
+console.log(cardList.children);
+
+var listItem = document.createElement('li');
+listItem.classList.add('product');
+cardList.appendChild(listItem);
+console.log(cardList.children);
+
+var title = document.createElement('h2');
+title.classList.add('product__title');
+title.textContent = 'Профессиональная селфи-палка';
+listItem.appendChild(title);
+
+var price = document.createElement('p');
+price.classList.add('product__price');
+price.textContent = '1000';
+listItem.appendChild(price);
+    </script>
+    </div>
+</body>
+</html>
