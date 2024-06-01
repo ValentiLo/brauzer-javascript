@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Функция для создания карточки товара</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+    <div class="st">
+  <h1>Функция для создания карточки товара</h1>
+  <p>Одну карточку мы добавили, но теперь Кекс просит добавить разом много карточек, основываясь на полученных данных. Данных пока нет, система барахлит, но мы не будем сидеть без дела и подготовим всё для решения задачи.</p>
+  <p>Алгоритм добавления одной карточки не сильно отличается от добавления десяти или двадцати карточек. Мы точно так же создаём элементы, добавляем им классы, атрибуты и текстовое содержимое, только много раз. Конечно, без функции тут не обойтись.</p>
+  <p>Объявим функцию createCard, которая будет отвечать за создание карточки товара. Внутри функции будет создаваться элемент списка, а затем будут создаваться и «упаковываться» в него другие части карточки: заголовок, картинка товара и стоимость. Возвращать функция будет готовый DOM-элемент. Снаружи функции мы оставим поиск самого списка товаров и вставку в него DOM-элементов, возвращённых из функции.</p>
+  <p>Такое «разделение труда» сделает наш код более универсальным. Функция createCard «не знает» ничего о том, куда именно вставлять DOM-элемент товара, поэтому её можно повторно использовать где угодно без каких-либо правок. Например, можно вставлять созданные в функции карточки товаров в список спецпредложений или в совершенно другой список новинок.</p>
+  <p>Мы постепенно переходим от кустарного производства к конвейерному. Так и должно быть — готовая программа, которая стабильно и корректно работает с любым количеством элементов.</p>
+ 
+  <h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>После функции makeElement создайте функцию createCard.</li>
+    </p>
+    <p>
+      <li>Перенесите в тело функции createCard весь код, начиная от объявления переменной listItem, заканчивая добавлением price (включительно) в карточку товара.</li>
+    </p>
+    <p>
+        <li>Из тела функции createCard удалите cardList.appendChild(listItem) и console.log(cardList.children).</li>
+      </p>
+      <p>
+        <li>Верните из функции listItem.</li>
+      </p>
+  </ol>
+  <!-- <h2>Решение</h2>
+  <p><code></code></p>
+  <p><code></code></p>
+  
+  <p><code></code></p>
+  <h2></h2> -->
+  <h2>Было</h2>
+  <pre>
+      var makeElement = function (tagName, className, text) {
+        var element = document.createElement(tagName);
+        element.classList.add(className);
+        if (text) {
+          element.textContent = text;
+        }
+        return element;
+      };
+      
+      var cardList = document.querySelector('.products');
+      console.log(cardList.children);
+      
+      var listItem = makeElement('li', 'product');
+      cardList.appendChild(listItem);
+      console.log(cardList.children);
+      
+      var title = makeElement('h2', 'product__title', 'Профессиональная селфи-палка');
+      listItem.appendChild(title);
+      
+      var picture = makeElement('img', 'product__image');
+      picture.src = 'device/item-4.jpg';
+      picture.alt = 'Профессиональная селфи-палка';
+      listItem.appendChild(picture);
+      
+      var price = makeElement('p', 'product__price', '1000');
+      listItem.appendChild(price);
+  </pre>
+  <h2>Стало</h2>
+  <pre>
+      var makeElement = function (tagName, className, text) {
+        var element = document.createElement(tagName);
+        element.classList.add(className);
+        if (text) {
+          element.textContent = text;
+        }
+        return element;
+      };
+      
+      var createCard = function () {
+        var listItem = makeElement('li', 'product');
+        
+        var title = makeElement('h2', 'product__title', 'Профессиональная селфи-палка');
+        listItem.appendChild(title);
+        
+        var picture = makeElement('img', 'product__image');
+        picture.src = 'device/item-4.jpg';
+        picture.alt = 'Профессиональная селфи-палка';
+        listItem.appendChild(picture);
+        
+        var price = makeElement('p', 'product__price', '1000');
+        listItem.appendChild(price);
+      
+        return listItem;
+      };
+      
+      var cardList = document.querySelector('.products');
+      console.log(cardList.children);
+  </pre>
+
+  <h2>Исполнение</h2>
+  <ul class="products">
+    <li class="product product--available">
+      <h2 class="product__title">Селфи-палка для начинающих</h2>
+      <img class="product__image" src="item-1.jpg" alt="Селфи-палка для начинающих">
+      <p class="product__price">200</p>
+    </li>
+
+    <li class="product product--unavailable">
+      <h2 class="product__title">Профессиональная селфи-палка</h2>
+      <img class="product__image" src="item-2.jpg" alt="Профессиональная селфи-палка">
+      <p class="product__price">1500</p>
+    </li>
+
+    <li class="product product--available">
+      <h2 class="product__title">Непотопляемая селфи-палка</h2>
+      <img class="product__image" src="item-3.jpg" alt="Непотопляемая селфи-палка">
+      <p class="product__price">2500</p>
+    </li>
+  </ul>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script>
+ 
+    </script>
+    </div>
+</body>
+</html>
