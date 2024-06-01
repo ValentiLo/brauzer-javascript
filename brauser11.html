@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Метод createElement, создание элемента</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+  <h1>Метод createElement, создание элемента</h1>
+  <p>Приступим к добавлению карточки товара. Если бы мы добавляли новый элемент через разметку, то мы бы добавили ещё один li с классом product в список товаров. В JavaScript для выполнения этой же задачи нужно сделать несколько шагов. Пойдём по порядку.</p>
+  <h2>Создание DOM-элемента</h2>
+  <p>Для начала нужно создать новый элемент списка, li. Создавать элементы можно разными способами, мы будем использовать метод createElement() объекта document. Метод принимает на вход строку с именем тега и возвращает созданный DOM-элемент. Этот элемент можно записать в переменную для дальнейших манипуляций:</p>
+  <p><code>var card = document.createElement('li');</code></p>
+  <p>Обратите внимание, что createElement — метод именно объекта document. То есть с его помощью мы создаём какой-то элемент для этого документа, пока не указывая, где он будет находиться в DOM.</p>
+  <h2>Добавление класса</h2>
+  <p>С этим шагом вы уже знакомы. Работаем с classList созданного элемента:</p>
+ <p><code>var card = document.createElement('li');</code></p>
+ <p><code>card.classList.add('card');</code></p>
+<h2>Добавление в DOM-дерево</h2>
+<p>Вновь созданный элемент по умолчанию не находится в DOM-дереве и не отображается на странице. Мы просто храним его где-то в переменной. Чтобы новый элемент появился на странице, его нужно добавить в DOM. Для этого найдём в текущем DOM-дереве элемент (родитель) и вставим в него наш элемент.</p>
+<p>Мы будем использовать метод appendChild() родителя. Этот метод принимает на вход элемент и вставляет его в конец родительского элемента. То есть, если в списке уже есть три элемента, как в нашем случае, добавленный с помощью appendChild элемент станет четвёртым в списке.</p>
+<p><code>var list = document.querySelector('.cards');</code></p>
+<p><code>var card = document.createElement('li');</code></p>
+<p><code>card.classList.add('card');</code></p>
+<p></p>
+<p><code>// После вызова этого метода новый элемент отрисуется на странице</code></p>
+<p><code>list.appendChild(card);</code></p>
+<p></p>
+<p>Вот что произойдёт с разметкой после вызова <code>appendChild:</code></p>
+<p><code>&lt;!-- Исходное состояние разметки --></code></p>
+<p><code>&lt;ul class="cards"></ul></code></p>
+<p><code>&lt;li class="card">Существующий элемент</li></code></p>
+<p><code>&lt;/ul></code></p>
+<pre>
+
+</pre>
+
+<p><code>&lt;!-- Состояние после вызова appendChild --></code></p>
+<p><code>&lt;ul class="cards"></ul></code></p>
+<p><code>&lt;li class="card">Существующий элемент</li></code></p>
+<p><code>&lt;li class="card">Добавленный элемент</li></code></p>
+<p><code>&lt;/ul></code></p>
+<p>Последовательность добавления элемента в DOM может быть другой: можно создать элемент с помощью <code>createElement</code> и сразу вставить его в родительский элемент, а уже затем добавлять классы. Но это не лучший путь — каждое изменение в DOM вызывает перерисовку страницы, а это дорогая операция, она занимает много времени.</p>
+<p>Теперь создадим карточку товара, добавим ей подходящий класс и вставим в конец списка товаров. Затем снова выведем в консоль <code>children</code> списка, чтобы убедиться, что наша карточка попала в коллекцию дочерних элементов. Это стандартное поведение коллекции — она меняется на лету вместе с изменением DOM.</p>
+<h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>С помощью <code>createElement</code> создайте элемент списка <code>li</code> и запишите его в переменную <code>listItem</code>.</li>
+    </p>
+    <p>
+      <li>Добавьте элементу списка класс <code>product</code>.</li>
+    </p>
+    <p>
+        <li>Добавьте <code>listItem</code> в конец списка товаров с помощью <code>appendChild</code>.</li>
+      </p>
+      <p>
+        <li>Ниже снова выведите в консоль коллекцию дочерних элементов <code>cardList.</code></li>
+      </p>
+  </ol>
+  <h2>Было </h2>
+  <p><code>var cardList = document.querySelector('.products');</code></p>
+  <p><code>console.log(cardList.children);</code></p>
+  <h2>Решение</h2>
+  <p><code>var cardList = document.querySelector('.products');</code></p>
+  <p><code>console.log(cardList.children);</code></p>
+  <p><code>var listItem = document.createElement('li');</code></p>
+  <p><code>listItem.classList.add('product');</code></p>
+  <p><code>cardList.appendChild(listItem);</code></p>
+  <p><code>console.log(cardList.children);</code></p>
+  <h2>Исполнение</h2>
+  <ul class="products">
+    <li class="product product--available">
+      <h2 class="product__title">Селфи-палка для начинающих</h2>
+      <img class="product__image" src="item-1.jpg" alt="Селфи-палка для начинающих">
+      <p class="product__price">200</p>
+    </li>
+
+    <li class="product product--unavailable">
+      <h2 class="product__title">Профессиональная селфи-палка</h2>
+      <img class="product__image" src="item-2.jpg" alt="Профессиональная селфи-палка">
+      <p class="product__price">1500</p>
+    </li>
+
+    <li class="product product--available">
+      <h2 class="product__title">Непотопляемая селфи-палка</h2>
+      <img class="product__image" src="item-3.jpg" alt="Непотопляемая селфи-палка">
+      <p class="product__price">2500</p>
+    </li>
+  </ul>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  
+  <script>
+ var cardList = document.querySelector('.products');
+console.log(cardList.children);
+
+var listItem = document.createElement('li');
+listItem.classList.add('product');
+cardList.appendChild(listItem);
+console.log(cardList.children);
+
+    </script>
+</body>
+</html>
