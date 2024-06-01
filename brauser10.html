@@ -32,8 +32,10 @@
   <h2>Решение</h2>
   <p><code>var cardList = document.querySelector('.products');</code></p>
   <p><code>console.log(cardList.children);</code></p>
-  <h2>В консоли появится запись</h2>
+  
   <p><code>[li.product.product--available, li.product.product--unavailable, li.product.product--available] (HTMLCollection)</code></p>
+  <h2>В консоли появится запись</h2>
+  <img src="10task.png" alt="">
     <ul class="products">
     <li class="product product--available">
       <h2 class="product__title">Селфи-палка для начинающих</h2>
@@ -53,6 +55,8 @@
       <p class="product__price">2500</p>
     </li>
   </ul>
-  <script src="script10.js"></script>
+  <script>
+  var cardList = document.querySelector('.products');
+    console.log(cardList.children);</script>
 </body>
 </html>
