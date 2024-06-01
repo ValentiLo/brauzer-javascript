@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Свойство src, адрес изображения</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+    <div class="st">
+  <h1>Свойство src, адрес изображения</h1>
+  <p>Нашей карточке не хватает изображения товара. Создадим его с помощью makeElement, передав функции имя тега 'img' и класс 'product__image'. Третий параметр мы не передаём, потому что у изображения нет текстового содержимого.</p>
+  <p>Чтобы картинка отобразилась на странице, нужно задать ей адрес файла с изображением, то есть значение атрибута src. Значением этого атрибута можно управлять с помощью одноимённого свойства DOM-элемента:</p>
+  <p><pre>
+    var picture = document.createElement('img');
+    picture.src = 'images/picture.jpg'
+  </pre></p>
+  <p>Таким же образом добавим изображению альтернативный текст, то есть описание фотографии. Если фотография не загрузится, на странице отобразится этот текст, чтобы пользователь понимал, что за блок находится перед ним. Кроме того, такой текст распознают программы, читающие вслух содержимое экрана (скринридеры), поэтому, добавляя такое описание, мы простым способом делаем элемент интерфейса доступным. Добавляем альтернативный текст через свойство alt. Как видите, названия атрибутов тегов и свойств DOM-элементов часто (но не всегда) совпадают.</p>
+  <p>picture.alt = 'Непотопляемая селфи-палка';</p>
+  <p>После создания изображения и «настройки» его свойств, добавим изображение в карточку. Обратите внимание, фотографию мы должны добавить перед ценой товара, потому что в разметке порядок тегов именно такой. Поэтому и код создания картинки нужно добавить перед кодом создания цены.</p>
+  <h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>До создания цены запишите результат вызова функции makeElement с аргументами 'img' и 'product__image' в переменную picture.</li>
+    </p>
+    <p>
+      <li>Задайте созданному элементу адрес изображения 'device/item-4.jpg'</li>
+    </p>
+    <p>
+        <li>и альтернативный текст 'Профессиональная селфи-палка'.</li>
+      </p>
+      <p>
+        <li>Добавьте picture в конец listItem.</li>
+      </p>
+  </ol>
+  <!-- <h2>Решение</h2>
+  <p><code></code></p>
+  <p><code></code></p>
+  
+  <p><code></code></p> -->
+  <h2>Было</h2>
+  <pre>
+      var makeElement = function (tagName, className, text) {
+        var element = document.createElement(tagName);
+        element.classList.add(className);
+        if (text) {
+          element.textContent = text;
+        }
+        return element;
+      };
+      
+      var cardList = document.querySelector('.products');
+      console.log(cardList.children);
+      
+      var listItem = makeElement('li', 'product');
+      cardList.appendChild(listItem);
+      console.log(cardList.children);
+      
+      var title = makeElement('h2', 'product__title', 'Профессиональная селфи-палка');
+      listItem.appendChild(title);
+      
+      // Изображение добавляйте сюда
+      
+      var price = makeElement('p', 'product__price', '1000');
+      listItem.appendChild(price);
+
+  </pre>
+  <h2>Стало</h2>
+  <pre>
+    var makeElement = function (tagName, className, text) {
+        var element = document.createElement(tagName);
+        element.classList.add(className);
+        if (text) {
+          element.textContent = text;
+        }
+        return element;
+      };
+      
+      var cardList = document.querySelector('.products');
+      console.log(cardList.children);
+      
+      var listItem = makeElement('li', 'product');
+      cardList.appendChild(listItem);
+      console.log(cardList.children);
+      
+      var title = makeElement('h2', 'product__title', 'Профессиональная селфи-палка');
+      listItem.appendChild(title);
+      
+      // Изображение добавляйте сюда
+      var picture = makeElement('img', 'product__image');
+      picture.src = 'item-4.jpg';
+      picture.alt = 'Профессиональная селфи-палка';
+      listItem.appendChild(picture);
+      
+      var price = makeElement('p', 'product__price', '1000');
+      listItem.appendChild(price);
+      
+  </pre>
+
+  <h2>Исполнение</h2>
+  <ul class="products">
+    <li class="product product--available">
+      <h2 class="product__title">Селфи-палка для начинающих</h2>
+      <img class="product__image" src="item-1.jpg" alt="Селфи-палка для начинающих">
+      <p class="product__price">200</p>
+    </li>
+
+    <li class="product product--unavailable">
+      <h2 class="product__title">Профессиональная селфи-палка</h2>
+      <img class="product__image" src="item-2.jpg" alt="Профессиональная селфи-палка">
+      <p class="product__price">1500</p>
+    </li>
+
+    <li class="product product--available">
+      <h2 class="product__title">Непотопляемая селфи-палка</h2>
+      <img class="product__image" src="item-3.jpg" alt="Непотопляемая селфи-палка">
+      <p class="product__price">2500</p>
+    </li>
+  </ul>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script>
+ var makeElement = function (tagName, className, text) {
+  var element = document.createElement(tagName);
+  element.classList.add(className);
+  if (text) {
+    element.textContent = text;
+  }
+  return element;
+};
+
+var cardList = document.querySelector('.products');
+console.log(cardList.children);
+
+var listItem = makeElement('li', 'product');
+cardList.appendChild(listItem);
+console.log(cardList.children);
+
+var title = makeElement('h2', 'product__title', 'Профессиональная селфи-палка');
+listItem.appendChild(title);
+
+// Изображение добавляйте сюда
+var picture = makeElement('img', 'product__image');
+picture.src = 'item-4.jpg';
+picture.alt = 'Профессиональная селфи-палка';
+listItem.appendChild(picture);
+
+var price = makeElement('p', 'product__price', '1000');
+listItem.appendChild(price);
+
+    </script>
+    </div>
+</body>
+</html>
