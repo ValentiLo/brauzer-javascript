@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Проверяем работу функции для создания карточки</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+    <div class="st">
+  <h1>Проверяем работу функции для создания карточки</h1>
+  <p>Разметка первых трёх товаров была нужна только в качестве подсказки. Мы подглядывали в неё, когда собирали свою карточку с помощью JavaScript.</p>
+  <p>Сейчас, когда функция для создания карточки товара написана, пришло время избавиться от исходной разметки. В HTML-коде должен остаться пустой тег ul.</p>
+  <p>Смело удаляйте все элементы списка из разметки, потом вызовите функцию createCard и добавьте результат работы этой функции в DOM. Так мы проверим, что функция работает корректно.</p>
+  
+  <h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>Удалите все li из разметки.</li>
+    </p>
+    <p>
+      <li>В JS-вкладке удалите весь оставшийся вывод в консоль.</li>
+    </p>
+    <p>
+        <li>В конце программы вызовите функцию createCard и запишите результат её работы в переменную cardItem.</li>
+      </p>
+      <p>
+        <li>Вставьте cardItem в конец DOМ-элемента cardList.</li>
+      </p>
+  </ol>
+  <!-- <h2>Решение</h2>
+  <p><code></code></p>
+  <p><code></code></p>
+  
+  <p><code></code></p>
+  <h2></h2> -->
+  <h2>Было</h2>
+  <pre>
+      var makeElement = function (tagName, className, text) {
+        var element = document.createElement(tagName);
+        element.classList.add(className);
+        if (text) {
+          element.textContent = text;
+        }
+        return element;
+      };
+      
+      var createCard = function () {
+        var listItem = makeElement('li', 'product');
+      
+        var title = makeElement('h2', 'product__title', 'Профессиональная селфи-палка');
+        listItem.appendChild(title);
+      
+        var picture = makeElement('img', 'product__image');
+        picture.src = 'device/item-4.jpg';
+        picture.alt = 'Профессиональная селфи-палка';
+        listItem.appendChild(picture);
+      
+        var price = makeElement('p', 'product__price', '1000');
+        listItem.appendChild(price);
+      
+        return listItem;
+      };
+      
+      var cardList = document.querySelector('.products');
+      console.log(cardList.children);
+      
+  </pre>
+  <p><a href="170.html">Была такая страница</a></p>
+  <h2>Стало</h2>
+  <pre>
+    
+  </pre>
+  <p><a href="171.html">Стала такая страница</a></p>
+  <h2>Исполнение</h2>
+  <ul class="products">
+    <li class="product product--available">
+      <h2 class="product__title">Селфи-палка для начинающих</h2>
+      <img class="product__image" src="item-1.jpg" alt="Селфи-палка для начинающих">
+      <p class="product__price">200</p>
+    </li>
+
+    <li class="product product--unavailable">
+      <h2 class="product__title">Профессиональная селфи-палка</h2>
+      <img class="product__image" src="item-2.jpg" alt="Профессиональная селфи-палка">
+      <p class="product__price">1500</p>
+    </li>
+
+    <li class="product product--available">
+      <h2 class="product__title">Непотопляемая селфи-палка</h2>
+      <img class="product__image" src="item-3.jpg" alt="Непотопляемая селфи-палка">
+      <p class="product__price">2500</p>
+    </li>
+  </ul>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script>
+ 
+    </script>
+    </div>
+</body>
+</html>
