@@ -1,8 +1,9 @@
 a{background: palevioletred; padding: 20px;}
-div{display: flex;justify-content: space-between;}
-
+body{width: 100%;background: papayawhip}
+h1{text-align: center;}
 code{background-color: aliceblue;border: 1px solid lightgrey; border-radius: 5px; padding: 2px; font-size: 100%;}
 span{border: 1px solid lightgrey; border-radius: 5px; padding: 5px; font-size: 110%;}
+.st{width: 80%; background: ivory;margin: auto;padding: 20px;}
 .products {
     display: flex;
     flex-wrap: wrap;

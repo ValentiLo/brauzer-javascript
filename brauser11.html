@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style11.css">
 </head>
 <body>
+    <div class="st">
   <h1>Метод createElement, создание элемента</h1>
   <p>Приступим к добавлению карточки товара. Если бы мы добавляли новый элемент через разметку, то мы бы добавили ещё один li с классом product в список товаров. В JavaScript для выполнения этой же задачи нужно сделать несколько шагов. Пойдём по порядку.</p>
   <h2>Создание DOM-элемента</h2>
@@ -68,6 +69,8 @@
   <p><code>listItem.classList.add('product');</code></p>
   <p><code>cardList.appendChild(listItem);</code></p>
   <p><code>console.log(cardList.children);</code></p>
+  <h2>Вывод в консоль</h2>
+  <img src="11task.png" alt="">
   <h2>Исполнение</h2>
   <ul class="products">
     <li class="product product--available">
@@ -91,7 +94,7 @@
   <div>
     <p><a href="index.html">На главную</a></p>
   </div>
-  
+  </div> 
   <script>
  var cardList = document.querySelector('.products');
 console.log(cardList.children);
@@ -102,5 +105,6 @@ cardList.appendChild(listItem);
 console.log(cardList.children);
 
     </script>
+   
 </body>
 </html>
