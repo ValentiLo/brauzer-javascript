@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Живые данные</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+    <div class="st">
+  <h1>Живые данные</h1>
+  <p>Наконец-то Кекс прислал пример выгрузки с данными для одного товара. Негусто, но этого достаточно, чтобы доработать функцию createCard. Ведь сейчас все данные в ней статичные, то есть одинаковые, и сколько бы раз мы её ни вызвали, карточки будут похожими друг на друга как близнецы.</p>
+  <p>Информация о товаре представляет собой объект, каждое свойство которого описывает характеристику товара. Вначале поработаем с этими свойствами:</p>
+  <p>imgUrl — адрес изображения;</p>
+  <p>text — название товара;</p>
+  <p>price — цена.</p>
+  <p>Чтобы функция возвращала разные данные на выходе, нужно, чтобы она получала разные данные на входе. Поэтому сначала добавим в функцию createCard параметр product и будем передавать в неё при вызове полученный объект с данными (он, кстати, уже вставлен в код, но закомментирован).</p>
+  <p>Затем внутри функции нужно заменить фиксированные значения на свойства входного параметра. Например:</p>
+  <p>
+    <pre>
+// Было:
+var title = createElement('h2', 'product__title', 'Профессиональная селфи-палка');
+picture.alt = 'Профессиональная селфи-палка';
+    </pre>
+  </p>
+  <p>
+    <pre>
+        // Стало:
+        var title = createElement('h2', 'product__title', product.text);
+        picture.alt = product.text;       
+    </pre>
+  </p>
+  <h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>Раскомментируйте объект productInfo.</li>
+    </p>
+    <p>
+      <li>Добавьте в объявление функции createCard параметр product, а в её вызов аргумент productInfo.</li>
+    </p>
+    <p>
+        <li>В теле функции createCard замените строку 'Профессиональная селфи-палка' на значение свойства text объекта product (для заголовка и альта).</li>
+      </p>
+      <p>
+        <li>Адрес изображения замените на значение свойства imgUrl объекта product.</li>
+      </p>
+      <p>
+        <li>Цену замените на значение свойства price объекта product.</li>
+      </p>
+  </ol>
+  <!-- <h2>Решение</h2>
+  <p><code></code></p>
+  <p><code></code></p>
+  
+  <p><code></code></p>
+  <h2></h2> -->
+  <h2>Было</h2>
+  <pre>
+        var makeElement = function (tagName, className, text) {
+        var element = document.createElement(tagName);
+        element.classList.add(className);
+        if (text) {
+          element.textContent = text;
+        }
+        return element;
+      };
+      
+      var createCard = function () {
+        var listItem = makeElement('li', 'product');
+      
+        var title = makeElement('h2', 'product__title', 'Профессиональная селфи-палка');
+        listItem.appendChild(title);
+      
+        var picture = makeElement('img', 'product__image');
+        picture.src = 'device/item-4.jpg';
+        picture.alt = 'Профессиональная селфи-палка';
+        listItem.appendChild(picture);
+      
+        var price = makeElement('p', 'product__price', '1000');
+        listItem.appendChild(price);
+      
+        return listItem;
+      };
+      
+      var cardList = document.querySelector('.products');
+      
+      /*
+      var productInfo = {
+        isAvailable: true,
+        imgUrl: 'device/item-1.jpg',
+        text: 'Селфи-палка для начинающих',
+        price: 200,
+        isSpecial: false,
+        specialPrice: null
+      };
+      */
+      
+      var cardItem = createCard();
+      cardList.appendChild(cardItem);
+      
+  </pre>
+  <div class="f">
+    <ul class="products">
+        <li class="product product--available">
+          <h2 class="product__title">Селфи-палка для начинающих</h2>
+          <img class="product__image" src="item-1.jpg" alt="Селфи-палка для начинающих">
+          <p class="product__price">200</p>
+        </li>
+    
+        <li class="product product--unavailable">
+          <h2 class="product__title">Профессиональная селфи-палка</h2>
+          <img class="product__image" src="item-2.jpg" alt="Профессиональная селфи-палка">
+          <p class="product__price">1500</p>
+        </li>
+    
+        <li class="product product--available">
+          <h2 class="product__title">Непотопляемая селфи-палка</h2>
+          <img class="product__image" src="item-3.jpg" alt="Непотопляемая селфи-палка">
+          <p class="product__price">2500</p>
+        </li>
+      </ul>
+  </div>
+  <h2>Стало</h2>
+  <pre>
+        var makeElement = function (tagName, className, text) {
+        var element = document.createElement(tagName);
+        element.classList.add(className);
+        if (text) {
+          element.textContent = text;
+        }
+        return element;
+      };
+      
+      var createCard = function (product) {
+        var listItem = makeElement('li', 'product');
+      
+        var title = makeElement('h2', 'product__title', product.text);
+        listItem.appendChild(title);
+      
+        var picture = makeElement('img', 'product__image');
+        picture.src = product.imgUrl;
+        picture.alt = product.text;
+        listItem.appendChild(picture);
+      
+        var price = makeElement('p', 'product__price', product.price);
+        listItem.appendChild(price);
+      
+        return listItem;
+      };
+      
+      var cardList = document.querySelector('.products');
+      
+      var productInfo = {
+        isAvailable: true,
+        imgUrl: 'device/item-1.jpg',
+        text: 'Селфи-палка для начинающих',
+        price: 200,
+        isSpecial: false,
+        specialPrice: null
+      };
+      
+      var cardItem = createCard(productInfo);
+      cardList.appendChild(cardItem);
+      
+  </pre>
+   <h2>Исполнение</h2>
+<div class="f">
+ 
+  <ul class="products">
+    <li class="product product--available">
+      <h2 class="product__title">Селфи-палка для начинающих</h2>
+      <img class="product__image" src="item-1.jpg" alt="Селфи-палка для начинающих">
+      <p class="product__price">200</p>
+    </li>
+
+    <li class="product product--unavailable">
+      <h2 class="product__title">Профессиональная селфи-палка</h2>
+      <img class="product__image" src="item-2.jpg" alt="Профессиональная селфи-палка">
+      <p class="product__price">1500</p>
+    </li>
+
+    <li class="product product--available">
+      <h2 class="product__title">Непотопляемая селфи-палка</h2>
+      <img class="product__image" src="item-3.jpg" alt="Непотопляемая селфи-палка">
+      <p class="product__price">2500</p>
+    </li>
+  </ul>
+</div>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script src="script181.js">
+     </script>
+    </div>
+</body>
+</html>
