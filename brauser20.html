@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Каталог | Девайс</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+    <div class="st">
+  <h1>Спецпредложение</h1>
+  <p>Осталось обработать последние два свойства из выгрузки: isSpecial и specialPrice. Свойство isSpecial содержит true, если на товар действует спецпредложение. У товара-спецпредложения появляется новая цена, которая хранится в specialPrice.
+
+  </p>
+  <p>Похожую задачу вы тоже решали: у карточек спецпредложений должен появляться дополнительный класс product--special. Но сейчас нужно ещё и специальную цену показывать. Она должна находиться в абзаце с классом product__special-price. Этот абзац должен быть последним дочерним элементом в карточке.</p>
+  <p>Порядок действий такой:</p>
+  <ol></ol>
+  <p>
+    <li>проверяем, является ли товар спецпредложением;</li>
+  </p>
+  <p>
+    <li>если проверка проходит, добавляем карточке товара класс,</li>
+  </p>
+  <p>
+    <li>а также добавляем внутрь карточки ещё один абзац с соответствующим классом и текстом из свойства <code>specialPrice</code>.</li>
+  </p>
+  <p>
+    После доработки снова тестируем функцию. Измените в объекте с данными значения свойств <code>isSpecial</code> на <code>true</code> и <code>specialPrice</code> на <span>300</span> (значение <code>null</code> обозначает «ничего» или, ближе к нашим реалиям, «спеццены нет»). Если всё сделано правильно, то внешний вид карточки изменится.
+  </p>
+  <p><i>Почему цена изменилась с <span>200</span> на <span>300</span>? Потому что спецпредложение.</i></p>
+  <h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>В функции <code>createCard</code> перед <code>return</code> добавьте проверку, что на товар распространяется спецпредложение.</li>
+    </p>
+    <p>
+      <li>Если условие выполняется, добавьте карточке товара класс <code>product--special</code>.</li>
+    </p>
+    <p>
+      <li>Ниже в условии создайте переменную <code>specialPrice</code> и запишите в неё абзац с классом <code>product__special-price</code> и ценой спецпредложения, созданный с помощью <code>makeElement</code>.</li>
+    </p>
+    <p>
+      <li>Ниже в условии добавьте элемент <code>specialPrice</code> в конец <code>listItem</code>.</li>
+    </p>
+    <p>
+      <li>В объекте productInfo замените значение isSpecial на <code>true</code> и значение <code>specialPrice</code> на 300.</li>
+    </p>
+    
+  </ol>
+  <!-- <h2>Решение</h2>
+  <p><code></code></p>
+  <p><code></code></p>
+  
+  <p><code></code></p>
+  <h2></h2> -->
+  <h2>Было</h2>
+  <pre>
+      var makeElement = function (tagName, className, text) {
+      var element = document.createElement(tagName);
+      element.classList.add(className);
+      if (text) {
+        element.textContent = text;
+      }
+      return element;
+    };
+    
+    var createCard = function (product) {
+      var listItem = makeElement('li', 'product');
+    
+      var title = makeElement('h2', 'product__title', product.text);
+      listItem.appendChild(title);
+    
+      var picture = makeElement('img', 'product__image');
+      picture.src = product.imgUrl;
+      picture.alt = product.text;
+      listItem.appendChild(picture);
+    
+      var price = makeElement('p', 'product__price', product.price);
+      listItem.appendChild(price);
+    
+      var availabilityClass = 'product--available';
+      if (!product.isAvailable) {
+        availabilityClass = 'product--unavailable';
+      }
+      listItem.classList.add(availabilityClass);
+    
+      return listItem;
+    };
+    
+    var cardList = document.querySelector('.products');
+    
+    var productInfo = {
+      isAvailable: true,
+      imgUrl: 'device/item-1.jpg',
+      text: 'Селфи-палка для начинающих',
+      price: 200,
+      isSpecial: false,
+      specialPrice: null
+    };
+    
+    var cardItem = createCard(productInfo);
+    cardList.appendChild(cardItem);
+    
+
+  </pre>
+  <p><a href="200.html">Была такая страница</a></p>
+  <p><pre>
+
+  </pre></p>
+  <p><a href="201.html">Стала такая страница</a></p>
+  
+  <h2>Стало</h2>
+  <pre>
+    var makeElement = function (tagName, className, text) {
+      var element = document.createElement(tagName);
+      element.classList.add(className);
+      if (text) {
+        element.textContent = text;
+      }
+      return element;
+    };
+    
+    var createCard = function (product) {
+      var listItem = makeElement('li', 'product');
+    
+      var title = makeElement('h2', 'product__title', product.text);
+      listItem.appendChild(title);
+    
+      var picture = makeElement('img', 'product__image');
+      picture.src = product.imgUrl;
+      picture.alt = product.text;
+      listItem.appendChild(picture);
+    
+      var price = makeElement('p', 'product__price', product.price);
+      listItem.appendChild(price);
+    
+      var availabilityClass = 'product--available';
+      if (!product.isAvailable) {
+        availabilityClass = 'product--unavailable';
+      }
+      listItem.classList.add(availabilityClass);
+    
+    
+      if (product.isSpecial) {
+        listItem.classList.add('product--special');
+        var specialPrice = makeElement('p', 'product__special-price', product.specialPrice);
+        listItem.appendChild(specialPrice);    
+      }
+      return listItem;
+    };
+    
+    var cardList = document.querySelector('.products');
+    
+    var productInfo = {
+      isAvailable: true,
+      imgUrl: 'device/item-1.jpg',
+      text: 'Селфи-палка для начинающих',
+      price: 200,
+      isSpecial: true,
+      specialPrice: 300
+    };
+    
+    var cardItem = createCard(productInfo);
+    cardList.appendChild(cardItem);
+    
+  </pre>
+
+  <h2>Исполнение</h2>
+  <ul class="products">
+
+  </ul>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script>
+    var makeElement = function (tagName, className, text) {
+  var element = document.createElement(tagName);
+  element.classList.add(className);
+  if (text) {
+    element.textContent = text;
+  }
+  return element;
+};
+
+var createCard = function (product) {
+  var listItem = makeElement('li', 'product');
+
+  var title = makeElement('h2', 'product__title', product.text);
+  listItem.appendChild(title);
+
+  var picture = makeElement('img', 'product__image');
+  picture.src = product.imgUrl;
+  picture.alt = product.text;
+  listItem.appendChild(picture);
+
+  var price = makeElement('p', 'product__price', product.price);
+  listItem.appendChild(price);
+
+  var availabilityClass = 'product--available';
+  if (!product.isAvailable) {
+    availabilityClass = 'product--unavailable';
+  }
+  listItem.classList.add(availabilityClass);
+
+
+  if (product.isSpecial) {
+    listItem.classList.add('product--special');
+    var specialPrice = makeElement('p', 'product__special-price', product.specialPrice);
+    listItem.appendChild(specialPrice);    
+  }
+  return listItem;
+};
+
+var cardList = document.querySelector('.products');
+
+var productInfo = {
+  isAvailable: true,
+  imgUrl: 'item-1.jpg',
+  text: 'Селфи-палка для начинающих',
+  price: 200,
+  isSpecial: true,
+  specialPrice: 300
+};
+
+var cardItem = createCard(productInfo);
+cardList.appendChild(cardItem);
+
+ 
+    </script>
+    </div>
+</body>
+</html>
