@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Используем массив объектов</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+    <div class="st">
+  <h1>Используем массив объектов</h1>
+  <p>Пока мы писали код, пришла полная выгрузка. Данные хранятся в массиве объектов cardsData.</p>
+  <p>Теперь товаров много и нам нужно вызывать createCard для каждого из них. Кажется, пришло время использовать цикл for.</p>
+  <p>Напишем цикл, который будет перебирать массив данных. Внутри цикла будем передавать текущий элемент массив[i] в функцию createCard и вставлять полученный результат в конец списка товаров. Так мы сделаем программу универсальной для любого количества карточек.</p>
+  <p>Примерно так может выглядеть цикл:</p>
+  <p><pre>
+
+  var item;
+
+  for (var i = 0; i < array.length; i++) {
+  item = createCard(array[i]);
+  list.appendChild(item);
+}
+
+  </pre></p>
+  <p>В этом коде мы сначала объявляем переменную, а затем внутри цикла переопределяем её значение на каждой итерации. При этом переменную мы используем только внутри цикла. До и после цикла она нам не нужна, поэтому объявлять её снаружи цикла бессмысленно. Учтём это и будем создавать переменную внутри цикла на каждой итерации. В неё будем записывать результат вызова createCard(массив[i]), а затем добавим содержимое этой переменной в конец каталога товаров. Цикл будет выглядеть так:</p>
+  <p><pre>
+    for (var i = 0; i < array.length; i++) {
+      var item = createCard(array[i]);
+      list.appendChild(item);
+    }
+  </pre></p>
+  <h2>Задачи</h2>
+  <ol>
+    <p>
+      <li>Удалите весь код, расположенный ниже объявления переменной cardList.</li>
+    </p>
+    <p>
+      <li>В конце программы создайте цикл for, который перебирает элементы массива cardsData, увеличивая значение i с 0 до длины массива cardsData.</li>
+    </p>
+    <p>
+      <li>В теле цикла вызывайте функцию createCard, передавая в неё текущий элемент массива cardsData, и записывайте результат вызова в переменную cardItem (эту переменную объявляйте внутри каждой итерации цикла).</li>
+    </p>
+    <p>
+      <li>Ниже в теле цикла добавляйте cardItem в список товаров cardList.</li>
+    </p>
+  </ol>
+  <h2>Решение</h2>
+  <!-- <p><code></code></p>
+  <p><code></code></p>
+  
+  <p><code></code></p>
+  <h2></h2> -->
+  <h2>Было</h2>
+  <pre>
+    var cardsData = [
+    {
+      isAvailable: true,
+      imgUrl: 'device/item-1.jpg',
+      text: 'Селфи-палка для начинающих',
+      price: 200,
+      isSpecial: false
+    },
+    {
+      isAvailable: false,
+      imgUrl: 'device/item-2.jpg',
+      text: 'Профессиональная селфи-палка',
+      price: 1500,
+      isSpecial: false
+    },
+    {
+      isAvailable: true,
+      imgUrl: 'device/item-3.jpg',
+      text: 'Непотопляемая селфи-палка',
+      price: 2500,
+      isSpecial: false
+    },
+    {
+      isAvailable: true,
+      imgUrl: 'device/item-4.jpg',
+      text: 'Селфи-палка «Следуй за мной»',
+      price: 4900,
+      isSpecial: true,
+      specialPrice: 100
+    }
+  ];
+  
+  var makeElement = function (tagName, className, text) {
+    var element = document.createElement(tagName);
+    element.classList.add(className);
+    if (text) {
+      element.textContent = text;
+    }
+    return element;
+  };
+  
+  var createCard = function (product) {
+    var listItem = makeElement('li', 'product');
+  
+    var title = makeElement('h2', 'product__title', product.text);
+    listItem.appendChild(title);
+  
+    var picture = makeElement('img', 'product__image');
+    picture.src = product.imgUrl;
+    picture.alt = product.text;
+    listItem.appendChild(picture);
+  
+    var price = makeElement('p', 'product__price', product.price);
+    listItem.appendChild(price);
+  
+    var availabilityClass = 'product--available';
+    if (!product.isAvailable) {
+      availabilityClass = 'product--unavailable';
+    }
+    listItem.classList.add(availabilityClass);
+  
+    if (product.isSpecial) {
+      listItem.classList.add('product--special');
+      var specialPrice = makeElement('p', 'product__special-price', product.specialPrice);
+      listItem.appendChild(specialPrice);
+    }
+  
+    return listItem;
+  };
+  
+  var cardList = document.querySelector('.products');
+  
+  var productInfo = {
+    isAvailable: true,
+    imgUrl: 'device/item-1.jpg',
+    text: 'Селфи-палка для начинающих',
+    price: 200,
+    isSpecial: true,
+    specialPrice: 300
+  };
+  
+  var cardItem = createCard(productInfo);
+  cardList.appendChild(cardItem);
+  
+  </pre>
+  <h2>Стало</h2>
+  <pre>
+    var cardsData = [
+  {
+    isAvailable: true,
+    imgUrl: 'device/item-1.jpg',
+    text: 'Селфи-палка для начинающих',
+    price: 200,
+    isSpecial: false
+  },
+  {
+    isAvailable: false,
+    imgUrl: 'device/item-2.jpg',
+    text: 'Профессиональная селфи-палка',
+    price: 1500,
+    isSpecial: false
+  },
+  {
+    isAvailable: true,
+    imgUrl: 'device/item-3.jpg',
+    text: 'Непотопляемая селфи-палка',
+    price: 2500,
+    isSpecial: false
+  },
+  {
+    isAvailable: true,
+    imgUrl: 'device/item-4.jpg',
+    text: 'Селфи-палка «Следуй за мной»',
+    price: 4900,
+    isSpecial: true,
+    specialPrice: 100
+  }
+];
+
+var makeElement = function (tagName, className, text) {
+  var element = document.createElement(tagName);
+  element.classList.add(className);
+  if (text) {
+    element.textContent = text;
+  }
+  return element;
+};
+
+var createCard = function (product) {
+  var listItem = makeElement('li', 'product');
+
+  var title = makeElement('h2', 'product__title', product.text);
+  listItem.appendChild(title);
+
+  var picture = makeElement('img', 'product__image');
+  picture.src = product.imgUrl;
+  picture.alt = product.text;
+  listItem.appendChild(picture);
+
+  var price = makeElement('p', 'product__price', product.price);
+  listItem.appendChild(price);
+
+  var availabilityClass = 'product--available';
+  if (!product.isAvailable) {
+    availabilityClass = 'product--unavailable';
+  }
+  listItem.classList.add(availabilityClass);
+
+  if (product.isSpecial) {
+    listItem.classList.add('product--special');
+    var specialPrice = makeElement('p', 'product__special-price', product.specialPrice);
+    listItem.appendChild(specialPrice);
+  }
+
+  return listItem;
+};
+
+var cardList = document.querySelector('.products');
+
+for (var i = 0; i < cardsData.length; i++) {
+  var cardItem = createCard(cardsData[i]);
+  cardList.appendChild(cardItem);  
+}
+
+
+  </pre>
+  <p><a href="210.html">Была такая страница</a></p>
+  <p><pre>
+
+  </pre></p>
+  <p><a href="211.html">Стала такая страница</a></p>
+  
+  <h2>Исполнение</h2>
+   <ul class="products">
+
+  </ul>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script>
+ var cardsData = [
+  {
+    isAvailable: true,
+    imgUrl: 'item-1.jpg',
+    text: 'Селфи-палка для начинающих',
+    price: 200,
+    isSpecial: false
+  },
+  {
+    isAvailable: false,
+    imgUrl: 'item-2.jpg',
+    text: 'Профессиональная селфи-палка',
+    price: 1500,
+    isSpecial: false
+  },
+  {
+    isAvailable: true,
+    imgUrl: 'item-3.jpg',
+    text: 'Непотопляемая селфи-палка',
+    price: 2500,
+    isSpecial: false
+  },
+  {
+    isAvailable: true,
+    imgUrl: 'item-4.jpg',
+    text: 'Селфи-палка «Следуй за мной»',
+    price: 4900,
+    isSpecial: true,
+    specialPrice: 100
+  }
+];
+
+var makeElement = function (tagName, className, text) {
+  var element = document.createElement(tagName);
+  element.classList.add(className);
+  if (text) {
+    element.textContent = text;
+  }
+  return element;
+};
+
+var createCard = function (product) {
+  var listItem = makeElement('li', 'product');
+
+  var title = makeElement('h2', 'product__title', product.text);
+  listItem.appendChild(title);
+
+  var picture = makeElement('img', 'product__image');
+  picture.src = product.imgUrl;
+  picture.alt = product.text;
+  listItem.appendChild(picture);
+
+  var price = makeElement('p', 'product__price', product.price);
+  listItem.appendChild(price);
+
+  var availabilityClass = 'product--available';
+  if (!product.isAvailable) {
+    availabilityClass = 'product--unavailable';
+  }
+  listItem.classList.add(availabilityClass);
+
+  if (product.isSpecial) {
+    listItem.classList.add('product--special');
+    var specialPrice = makeElement('p', 'product__special-price', product.specialPrice);
+    listItem.appendChild(specialPrice);
+  }
+
+  return listItem;
+};
+
+var cardList = document.querySelector('.products');
+
+for (var i = 0; i < cardsData.length; i++) {
+  var cardItem = createCard(cardsData[i]);
+  cardList.appendChild(cardItem);  
+}
+
+
+    </script>
+    </div>
+</body>
+</html>
