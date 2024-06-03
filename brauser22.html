@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Каталог | Девайс</title>
+  <link rel="stylesheet" href="device/setting.css">
+  <link rel="stylesheet" href="style11.css">
+</head>
+<body>
+    <div class="st">
+  <h1>Конспект «JS в браузере». Раздел 2</h1>
+  <p>Свойство DOM-элемент.children возвращает коллекцию дочерних, то есть вложенных, DOM-элементов.</p>
+  <p>Создание элемента и добавление его в DOM-дерево:</p>
+  <p><pre>
+
+var list = document.querySelector('.cards');
+
+// Создаём новый элемент
+var card = document.createElement('li');
+
+card.classList.add('card');
+
+// После вызова этого метода новый элемент отрисуется на странице
+list.appendChild(card);
+
+  </pre></p>
+<p>Вот что произойдёт с разметкой после вызова appendChild:</p>
+<p><pre>
+    
+&lt;!-- Исходное состояние разметки -->
+&lt;ul class="cards">
+&lt;li class="card">Существующий элемент</li>
+&lt;/ul>
+  
+&lt;!-- Состояние после вызова appendChild -->
+&lt;ul class="cards">
+&lt;li class="card">Существующий элемент</li>
+&lt;li class="card">Добавленный элемент</li>
+&lt;/ul>
+
+
+</pre></p>
+<p>Работа с текстовым содержимым элемента:</p>
+<p><pre>
+
+// HTML
+&lt;p>Я — &lt;em>текстовый элемент&lt;/em>.&lt;/p>
+
+// JS
+var p = document.querySelector('p');
+console.log(p.textContent);
+// Выведет: Я — текстовый элемент.
+
+p.textContent = 'Теперь у меня новое содержимое.';
+console.log(p.textContent);
+// Выведет: Теперь у меня новое содержимое.
+
+// В HTML содержание тега изменится
+&lt;p>Теперь у меня новое содержимое.&lt;/p>
+
+&lt;/pre></p>
+<p>Работа с изображениями:</p>
+<p><pre>
+
+// Создание изображения
+var picture = document.createElement('img');
+
+// Добавляем адрес картинки
+picture.src = 'images/picture.jpg';
+
+// Добавляет альтернативный текст
+picture.alt = 'Непотопляемая селфи-палка';
+
+// Добавляет изображение в конец родительского элемента
+element.appendChild(picture);
+
+</pre></p>
+  <div>
+    <p><a href="index.html">На главную</a></p>
+  </div>
+  <script>
+ 
+    </script>
+    </div>
+</body>
+</html>
